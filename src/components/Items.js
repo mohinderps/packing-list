@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import Filter from './Filter';
+import ItemContainer from '../containers/ItemContainer';
 
 class Items extends Component {
   constructor(props){
@@ -18,7 +19,7 @@ class Items extends Component {
   };
 
   render() {
-    const { title, items, onRemove, onToggle } = this.props;
+    const { title, items} = this.props;
     const {searchTerm} = this.state;
     return (
       <section className="Items">
@@ -31,10 +32,8 @@ class Items extends Component {
             item.value.toLowerCase().includes(searchTerm.toLowerCase()),
           )
           .map(item => (
-            <Item
+            <ItemContainer
               key={item.id}
-              onToggle={onToggle}
-              onRemove={onRemove}
               item={item}
             />
           ))}
